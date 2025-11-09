@@ -8,3 +8,4 @@ data/
 *.csv
 *.xlsx
 *.parquet
+.idea/
