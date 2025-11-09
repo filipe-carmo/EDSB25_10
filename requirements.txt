@@ -1,0 +1,13 @@
+numpy==2.1
+pandas
+scikit-learn
+jupyter
+jupyterlab
+jupyter-contrib-nbextensions
+ipykernel
+ydata-profiling[notebook]
+ydata-sdk
+tk
+setuptools
+wheel
+pip
