@@ -22,7 +22,7 @@ def preprocess_for_eda(df):
             df.index.name = 'EmployeeNumber'
     
     # Handle missing values by filling them with 'Missing' label
-    df = df.fillna('Missing')    
+    df = df.fillna('Missing')
     
     # Remove duplicate rows (if any)
     df = df.drop_duplicates()
