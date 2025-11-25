@@ -5,7 +5,6 @@ venv/
 __pycache__/
 
 data/
-*.csv
 *.xlsx
 *.parquet
 .idea/
