@@ -11,3 +11,8 @@ tk
 setuptools
 wheel
 pip
+xgboost
+matplotlib
+seaborn
+joblib
+
