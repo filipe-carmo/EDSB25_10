@@ -1,0 +1,38 @@
+{
+    "model_type": "Logistic Regression",
+    "best_params": {
+        "C": 100,
+        "class_weight": null,
+        "penalty": "l2",
+        "solver": "lbfgs"
+    },
+    "cv_f1_score": 0.7400287609486658,
+    "test_auc_score": 0.8048066155568956,
+    "thresholds": {
+        "default": 0.5,
+        "f1_optimized": 0.45791979812744515,
+        "recall_optimized": 0.16988357079823332
+    },
+    "target_recall": 0.8,
+    "feature_names": [
+        "JobSatisfaction",
+        "JobInvolvement",
+        "EnvironmentSatisfaction",
+        "JobRole_Research Director",
+        "JobRole_Sales Representative",
+        "BusinessTravel_Travel_Frequently",
+        "WorkLifeBalance",
+        "Department_Research & Development",
+        "YearsAtCompanyLog",
+        "TotalWorkingYearsLog",
+        "MaritalStatus_Single",
+        "OverTime_Yes",
+        "JobRole_Laboratory Technician",
+        "JobRole_Manufacturing Director",
+        "MaritalStatus_Married",
+        "JobRole_Manager",
+        "NumCompaniesWorked",
+        "JobRole_Healthcare Representative",
+        "Job_happiness_score"
+    ]
+}
