@@ -13,6 +13,7 @@ PROCESSED_PATH = 'data/processed/'
 os.makedirs(PROCESSED_PATH, exist_ok=True)
 
 # ==== Feature Definitions ====
+# ==== Feature Definitions ====
 ordinalcols = [
     'Education', 'EnvironmentSatisfaction', 'JobInvolvement', 'JobLevel',
     'JobSatisfaction', 'PerformanceRating', 'RelationshipSatisfaction', 'WorkLifeBalance'
@@ -24,16 +25,25 @@ numericcols = [
     'TrainingTimesLastYear', 'YearsAtCompany', 'YearsInCurrentRole',
     'YearsSinceLastPromotion', 'YearsWithCurrManager'
 ]
-scale_cols = numericcols + ordinalcols
+log_features = [
+    'TotalWorkingYearsLog', 'YearsAtCompanyLog', 
+    'MonthlyIncomeLog', 'YearsSinceLastPromotionLog'
+]
+scale_cols = numericcols + ordinalcols + log_features
 
 selected_features = [
     'JobSatisfaction', 'JobInvolvement', 'EnvironmentSatisfaction',
     'JobRole_Research Director', 'JobRole_Sales Representative', 'BusinessTravel_Travel_Frequently',
-    'WorkLifeBalance', 'Department_Research & Development', 'YearsAtCompanyLog',
-    'TotalWorkingYearsLog', 'MaritalStatus_Single', 'OverTime_Yes', 'JobRole_Laboratory Technician',
+    'WorkLifeBalance', 'Department_Research & Development', 
+    'YearsAtCompanyLog',  # Already there
+    'TotalWorkingYearsLog',  # Already there
+    'MonthlyIncomeLog',  # NEW - Add this
+    'YearsSinceLastPromotionLog',  # NEW - Add this
+    'MaritalStatus_Single', 'OverTime_Yes', 'JobRole_Laboratory Technician',
     'JobRole_Manufacturing Director', 'MaritalStatus_Married', 'JobRole_Manager',
     'NumCompaniesWorked', 'JobRole_Healthcare Representative', 'Job_happiness_score'
 ]
+
 
 # ==== Custom Transformers ====
 
@@ -44,10 +54,15 @@ class CustomFeatureEngineer(BaseEstimator, TransformerMixin):
         return self
     def transform(self, X):
         X = X.copy()
-        for col, log_col in [('TotalWorkingYears', 'TotalWorkingYearsLog'),
-                             ('YearsAtCompany', 'YearsAtCompanyLog')]:
+        # Log transform 4 features
+        for col, log_col in [
+            ('TotalWorkingYears', 'TotalWorkingYearsLog'),
+            ('YearsAtCompany', 'YearsAtCompanyLog'),
+            ('MonthlyIncome', 'MonthlyIncomeLog'),
+            ('YearsSinceLastPromotion', 'YearsSinceLastPromotionLog')
+        ]:
             if col in X.columns:
-                # Ensure numeric, forcefill, clip negatives (shouldn’t exist in HR, but just in case)
+                # Ensure numeric, forcefill, clip negatives
                 series = pd.to_numeric(X[col], errors='coerce')
                 series = series.fillna(series.median())
                 series = series.clip(lower=0)
@@ -161,7 +176,7 @@ def preprocess(data_path, target_name='Attrition', test_size=0.2, val_size=0.25,
     X_val[scale_cols] = scaler.transform(X_val[scale_cols])
     X_test[scale_cols] = scaler.transform(X_test[scale_cols])
 
-    # --- Custom categorical encoding (as your class defines)
+    # --- Custom categorical encoding
     encoder = CustomCategoricalEncoder()
     X_train = encoder.transform(X_train)
     X_val = encoder.transform(X_val)
@@ -182,11 +197,13 @@ def preprocess(data_path, target_name='Attrition', test_size=0.2, val_size=0.25,
 
     # --- Impute engineered features (robust forced fill, just in case)
     for df_ in [X_train, X_val, X_test]:
-        for col in ['YearsAtCompanyLog', 'TotalWorkingYearsLog', 'Job_happiness_score']:
+        for col in ['YearsAtCompanyLog', 'TotalWorkingYearsLog', 
+                    'MonthlyIncomeLog', 'YearsSinceLastPromotionLog', 
+                    'Job_happiness_score']:
             df_[col] = pd.to_numeric(df_[col], errors='coerce')
             df_[col] = df_[col].fillna(df_[col].median())
 
-    # --- Feature selection (now done last)
+    # --- Feature selection
     selector = FeatureSelector(features=selected_features)
     X_train = selector.transform(X_train)
     X_val = selector.transform(X_val)
