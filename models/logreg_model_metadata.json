@@ -1,19 +1,22 @@
 {
     "model_type": "Logistic Regression",
     "best_params": {
-        "C": 100,
-        "class_weight": null,
+        "C": 0.1,
+        "class_weight": {
+            "0": 1,
+            "1": 2
+        },
         "penalty": "l2",
         "solver": "lbfgs"
     },
-    "cv_f1_score": 0.7400287609486658,
-    "test_auc_score": 0.8048066155568956,
+    "cv_f1_score": 0.7161067237705894,
+    "test_auc_score": 0.8081660780428979,
     "thresholds": {
         "default": 0.5,
-        "f1_optimized": 0.45791979812744515,
-        "recall_optimized": 0.16988357079823332
+        "f1_optimized": 0.581244024497681,
+        "recall_optimized": 0.4
     },
-    "target_recall": 0.8,
+    "target_recall": 0.7,
     "feature_names": [
         "JobSatisfaction",
         "JobInvolvement",
@@ -32,7 +35,6 @@
         "MaritalStatus_Married",
         "JobRole_Manager",
         "NumCompaniesWorked",
-        "JobRole_Healthcare Representative",
-        "Job_happiness_score"
+        "JobRole_Healthcare Representative"
     ]
 }

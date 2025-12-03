@@ -14,21 +14,21 @@
     "loss": "binary_crossentropy"
   },
   "training": {
-    "epochs_trained": 21,
-    "best_val_auc": 0.8038591146469116,
-    "final_train_loss": 0.2040945589542389,
-    "final_val_loss": 0.1644783467054367
+    "epochs_trained": 17,
+    "best_val_auc": 0.7854681611061096,
+    "final_train_loss": 0.2408505082130432,
+    "final_val_loss": 0.18880631029605865
   },
   "test_performance": {
-    "auc_score": 0.7525195968645016
+    "auc_score": 0.7329658023946938
   },
   "thresholds": {
     "default": 0.5,
-    "f1_optimized": 0.4730387330055237,
-    "recall_optimized": 0.43275395035743713
+    "f1_optimized": 0.4974559545516968,
+    "recall_optimized": 0.4706250727176666
   },
   "class_weights": {
     "0": 1.0,
-    "1": 7.0
+    "1": 5.0
   }
 }

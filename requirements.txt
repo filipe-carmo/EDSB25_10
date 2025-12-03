@@ -5,14 +5,15 @@ jupyter
 jupyterlab
 jupyter-contrib-nbextensions
 ipykernel
-ydata-profiling[notebook]
-ydata-sdk
+#ydata-profiling[notebook]
+#ydata-sdk
 tk
 setuptools
-wheel
+#wheel
 pip
 xgboost
 matplotlib
 seaborn
 joblib
 
+#python 3.12 works best for ydata

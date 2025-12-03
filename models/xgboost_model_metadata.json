@@ -1,17 +1,17 @@
 {
     "model_type": "XGBoost",
     "best_params": {
-        "learning_rate": 0.01,
-        "max_depth": 3,
+        "learning_rate": 0.2,
+        "max_depth": 7,
         "n_estimators": 300,
-        "scale_pos_weight": 5.1678321678321675
+        "scale_pos_weight": 10.335664335664335
     },
-    "cv_f1_score": 0.5068944605524144,
-    "test_auc_score": 0.7494185545697304,
+    "cv_f1_score": 0.5005452953369024,
+    "test_auc_score": 0.7164269101559135,
     "thresholds": {
         "default": 0.5,
-        "f1_optimized": 0.6233535408973694,
-        "recall_optimized": 0.39361655712127686
+        "f1_optimized": 0.8296696543693542,
+        "recall_optimized": 0.011150856502354145
     },
     "target_recall": 0.7,
     "feature_names": [
@@ -32,85 +32,80 @@
         "MaritalStatus_Married",
         "JobRole_Manager",
         "NumCompaniesWorked",
-        "JobRole_Healthcare Representative",
-        "Job_happiness_score"
+        "JobRole_Healthcare Representative"
     ],
     "feature_importance": [
         {
-            "Feature": "Job_happiness_score",
-            "Importance": 0.10996942967176437
-        },
-        {
-            "Feature": "OverTime_Yes",
-            "Importance": 0.08241010457277298
-        },
-        {
-            "Feature": "TotalWorkingYearsLog",
-            "Importance": 0.0722283124923706
-        },
-        {
-            "Feature": "BusinessTravel_Travel_Frequently",
-            "Importance": 0.0634089931845665
-        },
-        {
-            "Feature": "NumCompaniesWorked",
-            "Importance": 0.059874676167964935
-        },
-        {
             "Feature": "JobRole_Research Director",
-            "Importance": 0.057893056422472
-        },
-        {
-            "Feature": "MaritalStatus_Single",
-            "Importance": 0.05695569887757301
-        },
-        {
-            "Feature": "YearsAtCompanyLog",
-            "Importance": 0.05375942960381508
-        },
-        {
-            "Feature": "Department_Research & Development",
-            "Importance": 0.0521133616566658
-        },
-        {
-            "Feature": "JobRole_Manufacturing Director",
-            "Importance": 0.04873817786574364
-        },
-        {
-            "Feature": "JobRole_Laboratory Technician",
-            "Importance": 0.04497646912932396
-        },
-        {
-            "Feature": "JobRole_Sales Representative",
-            "Importance": 0.04447231814265251
-        },
-        {
-            "Feature": "JobRole_Healthcare Representative",
-            "Importance": 0.04170772433280945
+            "Importance": 0.11983277648687363
         },
         {
             "Feature": "JobRole_Manager",
-            "Importance": 0.03808460012078285
+            "Importance": 0.10782194882631302
         },
         {
-            "Feature": "EnvironmentSatisfaction",
-            "Importance": 0.03793659061193466
+            "Feature": "JobRole_Healthcare Representative",
+            "Importance": 0.10355300456285477
         },
         {
-            "Feature": "WorkLifeBalance",
-            "Importance": 0.037369634956121445
+            "Feature": "JobRole_Manufacturing Director",
+            "Importance": 0.08169851452112198
         },
         {
-            "Feature": "JobSatisfaction",
-            "Importance": 0.035231295973062515
+            "Feature": "BusinessTravel_Travel_Frequently",
+            "Importance": 0.05977620556950569
+        },
+        {
+            "Feature": "OverTime_Yes",
+            "Importance": 0.05830029025673866
         },
         {
             "Feature": "JobInvolvement",
-            "Importance": 0.03433145210146904
+            "Importance": 0.05104014649987221
+        },
+        {
+            "Feature": "WorkLifeBalance",
+            "Importance": 0.05062471702694893
+        },
+        {
+            "Feature": "JobRole_Sales Representative",
+            "Importance": 0.04571990296244621
+        },
+        {
+            "Feature": "YearsAtCompanyLog",
+            "Importance": 0.043250128626823425
+        },
+        {
+            "Feature": "NumCompaniesWorked",
+            "Importance": 0.04185699298977852
+        },
+        {
+            "Feature": "JobSatisfaction",
+            "Importance": 0.03787817433476448
+        },
+        {
+            "Feature": "JobRole_Laboratory Technician",
+            "Importance": 0.03747149556875229
+        },
+        {
+            "Feature": "TotalWorkingYearsLog",
+            "Importance": 0.03523322567343712
+        },
+        {
+            "Feature": "MaritalStatus_Single",
+            "Importance": 0.0352049358189106
+        },
+        {
+            "Feature": "Department_Research & Development",
+            "Importance": 0.034927815198898315
+        },
+        {
+            "Feature": "EnvironmentSatisfaction",
+            "Importance": 0.03211161866784096
         },
         {
             "Feature": "MaritalStatus_Married",
-            "Importance": 0.028538666665554047
+            "Importance": 0.023698119446635246
         }
     ]
 }
