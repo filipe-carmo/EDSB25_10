@@ -277,4 +277,73 @@ def preprocess(data_path, target_name='Attrition', test_size=0.2, val_size=0.25,
     print(f"  X_test: {X_test.shape}")
     print(f"\nTotal features: {len(selected_features)}")
     
-    return X_train, X_val, X_test, y_train, y_val, y_test
+    return X_train, X_val, X_test, y_train, y_val, y_test, scaler, num_imputer
+
+
+# ============================================================
+# TRANSFORM NEW DATA (FOR DEPLOYMENT)
+# ============================================================
+
+def transform_new_data(input_data, scaler, imputer):  # 👈 Add parameters
+    """
+    Transform new employee data for prediction
+    
+    Args:
+        input_data: dict or DataFrame with RAW employee features
+        scaler: Pre-fitted StandardScaler from training
+        imputer: Pre-fitted SimpleImputer from training
+    
+    Returns:
+        DataFrame with processed features matching training data
+    """
+    # Convert to DataFrame if dict
+    if isinstance(input_data, dict):
+        df = pd.DataFrame([input_data])
+    else:
+        df = input_data.copy()
+    
+    # Keep only the columns we need (same as preprocess, but NO target)
+    available_cols = [col for col in columns_to_keep if col in df.columns and col != 'Attrition']
+    df = df[available_cols]
+    
+    # ============================================================
+    # STEP 1: IMPUTE NUMERIC COLUMNS (USE SAVED IMPUTER)
+    # ============================================================
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+    
+    numeric_cols_present = [c for c in numeric_cols if c in df.columns]
+    if numeric_cols_present:
+        df[numeric_cols_present] = imputer.transform(df[numeric_cols_present])  # 👈 Use saved imputer
+    
+    # ============================================================
+    # STEP 2: FEATURE ENGINEERING (creates log features)
+    # ============================================================
+    engineer = CustomFeatureEngineer()
+    df = engineer.transform(df)
+    
+    # ============================================================
+    # STEP 3: SCALING (USE SAVED SCALER)
+    # ============================================================
+    scale_cols_present = [c for c in scale_cols if c in df.columns]
+    if scale_cols_present:
+        df[scale_cols_present] = scaler.transform(df[scale_cols_present])  # 👈 Use saved scaler
+    
+    # Rest stays the same...
+    encoder = CustomCategoricalEncoder()
+    df = encoder.transform(df)
+    
+    all_columns = selected_features.copy()
+    synchronizer = ColumnSynchronizer(ref_columns=all_columns)
+    df = synchronizer.transform(df)
+    
+    for col in ['YearsAtCompanyLog', 'TotalWorkingYearsLog']:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+            df[col] = df[col].fillna(df[col].median() if len(df) > 1 else 0)
+    
+    selector = FeatureSelector(features=selected_features)
+    df = selector.transform(df)
+    
+    return df

@@ -9,11 +9,11 @@
         "penalty": "l2",
         "solver": "lbfgs"
     },
-    "cv_f1_score": 0.7161067237705894,
-    "test_auc_score": 0.8081660780428979,
+    "cv_f1_score": 0.7163761245091194,
+    "test_auc_score": 0.8084244982341287,
     "thresholds": {
         "default": 0.5,
-        "f1_optimized": 0.581244024497681,
+        "f1_optimized": 0.5777104920366373,
         "recall_optimized": 0.4
     },
     "target_recall": 0.7,
