@@ -9,11 +9,10 @@ import pandas as pd
 import numpy as np
 import joblib
 import json
-import sys
 
-# Add scripts directory to path
-sys.path.append('scripts')
+# ✅ Direct import 
 from preprocessing import transform_new_data
+
 
 # ============================================
 # 1. LOAD MODELS AND METADATA
@@ -22,14 +21,14 @@ from preprocessing import transform_new_data
 logreg = joblib.load("models/logistic_regression_best.pkl")
 dt = joblib.load("models/dt_attrition_model.joblib")
 scaler = joblib.load('models/scaler.pkl')
-imputer = joblib.load('models/imputer.pkl') 
+imputer = joblib.load('models/imputer.pkl')
 
 with open("models/logreg_model_metadata.json", 'r') as f:
     logreg_metadata = json.load(f)
 with open("models/dt_model_metadata.json", 'r') as f:
     dt_metadata = json.load(f)
 
-# Recall-optimized thresholds (FIXED)
+# Recall-optimized thresholds 
 THRESHOLD_LOGREG = logreg_metadata['thresholds']['recall_optimized']  # 0.400
 THRESHOLD_DT = dt_metadata['thresholds']['recall_optimized']  # 0.320
 
