@@ -1,26 +1,4 @@
-﻿name: Sync to Hugging Face Space
-
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'app.py'
-      - 'preprocessing.py'
-      - 'models/**'
-      - 'requirements.txt'
-      - 'space.yaml'
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          lfs: true
-      
-      - name: Push to Hugging Face Space
+﻿      - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
@@ -28,8 +6,8 @@ jobs:
           git config --global user.email "github-actions@example.com"
           git config --global user.name "GitHub Actions Bot"
           
-          # Clone HF Space
-          git clone https://huggingface.co/spaces/filipe-carmo/hr-attrition-prediction hf-space
+          # Clone HF Space using token for auth
+          git clone https://filipe-carmo:${HF_TOKEN}@huggingface.co/spaces/filipe-carmo/hr-attrition-prediction hf-space
           cd hf-space
           
           # Copy deployment files from GitHub repo
@@ -50,7 +28,7 @@ jobs:
           git add .
           if ! git diff --cached --quiet; then
             git commit -m "Auto-sync from GitHub: $(date)"
-            git push https://filipe-carmo:$HF_TOKEN@huggingface.co/spaces/filipe-carmo/hr-attrition-prediction main
+            git push https://filipe-carmo:${HF_TOKEN}@huggingface.co/spaces/filipe-carmo/hr-attrition-prediction main
           else
             echo "No changes to sync."
           fi
