@@ -1,5 +1,15 @@
 HR Attrition Project
 
+Group and Repository
+
+- Filipe Brandão Carmo – 20240828
+- João Silva – 20241655
+- Rita Marques – 20242019
+- Sara Henriques – 20242070
+
+GitHub repository: https://github.com/filipe-carmo/EDSB25_10  
+Hugging Face Space: https://huggingface.co/spaces/filipe-carmo/hr-attrition-prediction
+
 I. Introduction and Methodology
 
 The objective of this capstone project is to synthesize and apply the diverse skills and knowledge acquired throughout the coursework by developing an end-to-end data science solution focused on predicting employee attrition. The project integrates data exploration, feature engineering, machine learning, evaluation, and deployment, while emphasizing clear communication of results for business stakeholders.
