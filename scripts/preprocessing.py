@@ -1,11 +1,13 @@
 import pandas as pd
 import numpy as np
 import os
+from pathlib import Path
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
+
 
 
 # ============================================================
@@ -19,7 +21,7 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 
 # Define processed data path relative to project root
 PROCESSED_PATH = PROJECT_ROOT / 'data' / 'processed'
-PROCESSED_PATH.mkdir(parents=True, exist_ok=True)
+
 
 # ============================================================
 # COLUMN DEFINITIONS
@@ -270,13 +272,15 @@ def preprocess(data_path, target_name='Attrition', test_size=0.2, val_size=0.25,
     X_test = selector.transform(X_test)
     
     # --- Output to CSV
-    # --- Output to CSV
+    '''
+    PROCESSED_PATH.mkdir(parents=True, exist_ok=True)
     X_train.to_csv(PROCESSED_PATH / "X_train.csv", index=False)
     X_val.to_csv(PROCESSED_PATH / "X_val.csv", index=False)
     X_test.to_csv(PROCESSED_PATH / "X_test.csv", index=False)
     y_train.to_csv(PROCESSED_PATH / "y_train.csv", index=False)
     y_val.to_csv(PROCESSED_PATH / "y_val.csv", index=False)
     y_test.to_csv(PROCESSED_PATH / "y_test.csv", index=False)
+    '''
 
     print(f"\nFinal feature shapes:")
     print(f"  X_train: {X_train.shape}")
