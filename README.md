@@ -29,13 +29,13 @@ old files/ – Legacy or exploratory files kept for reference, not part of the m
 
 project_brief/ – Original project description, requirements, and briefing documents
 
-reports/ – Final presentation, backup slides, and any additional project reports
+reports/ – Final presentation
 
 scripts/ – Auxiliary Python scripts
 
-venv/ – Local virtual environment (ignored by Git; not required for users cloning the repo)
+venv/ – Local virtual environment (ignored by Git)
 
-.gitignore – Excludes unnecessary files (e.g., venv/, large data, checkpoints) from version control
+.gitignore – Excludes unnecessary files from version control
 
 app.py – Gradio-based application for interactive inference and deployment (local or HF Space)
 
