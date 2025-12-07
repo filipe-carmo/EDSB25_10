@@ -6,7 +6,7 @@ xgboost>=2.0.0
 matplotlib>=3.8.0
 seaborn>=0.13.0
 
-# Jupyter kernel + classic notebook support 
+# Jupyter kernel + classic notebook support
 jupyter>=1.0.0
 ipykernel>=6.25.0
 jupyter-contrib-nbextensions>=0.7.0
@@ -18,5 +18,8 @@ setuptools>=68.0.0
 ydata-profiling
 imbalanced-learn>=0.12.0
 scipy>=1.11.0
+
+# Deep learning
+tensorflow>=2.13.0
 
 # TESTED WITH: Python 3.10 - 3.12
